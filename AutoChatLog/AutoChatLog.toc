@@ -2,7 +2,6 @@
 ## Title: Auto Chat Log
 ## Notes: Automatically enables /chatlog on login for WoW Forever
 ## Author: ReneSarjeant
-## Version: 1.0
-## SavedVariables: AutoChatLogDB
+## Version: 1.1
 
 AutoChatLog.lua
