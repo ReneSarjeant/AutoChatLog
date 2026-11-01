@@ -8,9 +8,9 @@ A tiny, zero-configuration addon that turns on the built-in chat logging as soon
 
 ## What it does
 
-- On `PLAYER_LOGIN` / `PLAYER_ENTERING_WORLD` it checks whether chat logging is already active.
-- If not, it calls `LoggingChat(true)` after a short 1-second delay (so the chat system is ready).
-- Prints a green confirmation in chat:
+- On `PLAYER_ENTERING_WORLD` (login, UI reload, and zone transitions), it checks whether chat logging is already active.
+- If not, it immediately calls `LoggingChat(true)`. There are no timers or startup delays.
+- Prints a green confirmation when it turns logging on:
   ```
   Auto Chat Log: Chat logging enabled. Log file: Logs\WoWChatLog.txt
   ```
@@ -35,7 +35,7 @@ It does **not** store its own chat history. It only toggles the client’s built
    - Click the gear icon next to **Play** → **Show in Explorer**
    - Open the `Interface\AddOns` folder (create `Interface` and `AddOns` if they don’t exist)
 
-3. Restart the game (or type `/reload` if already in-game).
+3. Restart the game after installing. For updates to an already installed copy, type `/reload`.
 4. On the character select screen, make sure **Auto Chat Log** is checked under AddOns.
 
 ---
@@ -45,7 +45,6 @@ It does **not** store its own chat history. It only toggles the client’s built
 | Command | Action |
 |---------|--------|
 | `/autochatlog` or `/acl` | Force-enable logging |
-| `/acl off` | Disable logging |
 | `/acl status` | Show whether logging is currently on |
 
 ---
@@ -71,6 +70,8 @@ AutoChatLog/
 ## Notes
 
 - Logging only captures messages **after** it is enabled for that session.
+- No saved settings or addon database are used.
+- To stop automatic logging, disable **Auto Chat Log** in the AddOns list and reload the UI, then use `/chatlog` to turn logging off if it is still active. `/acl` has no off command; any argument other than `status` enables logging.
 - The log file is written by the game client to `Logs\WoWChatLog.txt` and is normally flushed on logout.
 - If you also use chat addons (Forever Simple Chat, Prat, etc.), they keep their own history separately. This addon only controls the official client log.
 
@@ -83,4 +84,4 @@ Public domain / free to use, modify, and redistribute.
 ---
 
 **Author:** ReneSarjeant  
-**Version:** 1.0
+**Version:** 1.1
