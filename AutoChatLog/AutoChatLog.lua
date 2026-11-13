@@ -6,6 +6,9 @@ frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 local function EnableChatLog()
     if not LoggingChat() then
         LoggingChat(true)
+        if not LoggingChat() then
+            return
+        end
         print("|cff00ff00Auto Chat Log:|r Chat logging enabled. Log file: Logs\\WoWChatLog.txt")
     end
 end
